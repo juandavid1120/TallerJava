@@ -2,6 +2,7 @@ package com.JuanDavid;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.Locale;
 import java.util.Random;
 
 public class Persona {
@@ -23,6 +24,8 @@ public class Persona {
         Nombre="juanda";
         sexo="hombre";
         edad=22;
+        peso=80;
+        altura=1.80;
 
     }
 
@@ -30,12 +33,12 @@ public class Persona {
         Nombre = nombre;
         this.edad = edad;
         this.sexo = sexo;
-        this.peso = peso;
+        this.peso = 60;
         this.DNI = DNI;
-        this.altura = altura;
+        this.altura = 1.8;
     }
     public double CalcularIMC(){
-        double IMC=peso/(Math.pow(altura,2));
+        double IMC= peso/(Math.pow(altura,2));
 
         if (IMC < 20) {
             return -1;
@@ -57,9 +60,9 @@ public class Persona {
             int r = new Random().nextInt(8) + 1;
             random += String.valueOf(r);
         }
-        nro=Integer.valueOf(random)/23;
-        random=random+listaLetras.get(nro);
-
+        nro=Integer.valueOf(random)%23;
+        random=random+listaLetras.get(nro).toUpperCase();
+        System.out.println(random);
        this.DNI=random;
 
 
@@ -73,7 +76,7 @@ public class Persona {
             return true;
         }
         return false;
-    }  public boolean IsMAyorEdad(int edad)
+    }  public boolean IsMAyorEdad()
     {
         if (edad >=18 ) {
             return true;
@@ -118,7 +121,7 @@ public class Persona {
         this.sexo = sexo;
     }
 
-    public float getPeso() {
+    public double getPeso() {
         return peso;
     }
 
@@ -131,7 +134,7 @@ public class Persona {
     }
 
 
-    public float getAltura() {
+    public double getAltura() {
         return altura;
     }
 

@@ -4,11 +4,7 @@ package com.JuanDavid;
 import org.apache.commons.lang3.StringUtils;
 
 import javax.swing.*;
-import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.time.chrono.ChronoLocalDateTime;
-import java.util.Date;
-import java.util.Locale;
 
 public class Main extends Validaciones {
     public static void main(String[] args) {
@@ -27,15 +23,15 @@ public class Main extends Validaciones {
                     + "7. INGRESA NÚMERO\n"
                     + "8. ¿ES DÍA LABORAL? \n"
                     + "9 REEMPLAZAR CADENA \n"
-                    + "10 QUITAR ESPACIOS EN BLANCO"
-                    + "11 TAMAÑO DE FRASE Y NRO A-E-I-O-U"
-                    + "12. DIFERENCIA EN UNA CADENA Y OTRA"
-                    + "13 PEDIR FECHA ACTUAL"
-                    + "14 NROS HASTA EL 100"
-                    + "15 MENÚ"
-                    + "16 TAMAÑO DE FRASE Y NRO A-E-I-O-U"
-                    + "17 TAMAÑO DE FRASE Y NRO A-E-I-O-U"
-                    + "18 TAMAÑO DE FRASE Y NRO A-E-I-O-U"
+                    + "10 QUITAR ESPACIOS EN BLANCO  \n"
+                    + "11 TAMAÑO DE FRASE Y NRO A-E-I-O-U  \n"
+                    + "12. DIFERENCIA EN UNA CADENA Y OTRA  \n"
+                    + "13 PEDIR FECHA ACTUAL \n "
+                    + "14 NROS HASTA EL 100  \n"
+                    + "15 MENÚ \n"
+                    + "16 CALCULAR DNI \n"
+                    + "17 ELTRODOMESTICOS \n"
+                    + "18 TIENDA DE SERIE Y VIDEO JUEGOS\n"
                     + "19. SALIR \n");
             switch (opcMenuPrincipal)//OP MENU PRINCIPAL
             {
@@ -251,7 +247,7 @@ public class Main extends Validaciones {
                 case 16:
                         String nombre,sexo;
                         int edad;
-                        double peso,altura;
+                        double peso,altura,IMC;
                         nombre=leerString("INGRESE EL NOMBRE");
                         sexo=leerString("INGRESE EL SEXO");
                         edad=leerEntero("INGRESE LA EDAD");
@@ -261,8 +257,21 @@ public class Main extends Validaciones {
                         Persona obj2=new Persona(nombre, edad, sexo);
                         Persona obj3=new Persona();
 
-                     obj1.CalcularIMC();
-                     
+                     obj1.CalcularDNI();
+                     obj1.IsMAyorEdad();
+                     JOptionPane.showMessageDialog(null,obj1.toString());
+                     obj2.CalcularDNI();
+                     obj2.IsMAyorEdad();
+                    JOptionPane.showMessageDialog(null,obj2.toString());
+                     obj3.CalcularDNI();
+                     obj3.IsMAyorEdad();
+                     JOptionPane.showMessageDialog(null,obj3.toString());
+
+
+
+
+
+
 
 
 
@@ -272,7 +281,68 @@ public class Main extends Validaciones {
                 case 17:
 
                     break;
-                case 18:
+                case 18: Serie[] seriesList = new Serie[5];
+                    VideoJuego[] videoJuegos = new VideoJuego[5];
+                    Serie serie1 = new Serie("Rapido y furiosos", 13, "", "");
+                    Serie serie2 = new Serie("la monja", 15, "", "");
+                    Serie serie3 = new Serie("Caso de cristo", 12, "", "");
+                    Serie serie4 = new Serie("terminator 3", 4, "", "");
+                    Serie serie5 = new Serie("Naruto", 6, "", "");
+                    seriesList[0] = serie1;
+                    seriesList[1] = serie2;
+                    seriesList[2] = serie3;
+                    seriesList[3] = serie4;
+                    seriesList[4] = serie5;
+                    VideoJuego vJuego1 = new VideoJuego("", 20, "accion", "Intel");
+                    VideoJuego vJuego2 = new VideoJuego("", 10, "accion", "Intel");
+                    VideoJuego vJuego3 = new VideoJuego("", 3, "accion", "Intel");
+                    VideoJuego vJuego4 = new VideoJuego("", 5, "accion", "Intel");
+                    VideoJuego vJuego5 = new VideoJuego("", 9, "accion", "Intel");
+                    videoJuegos[0] = vJuego1;
+                    videoJuegos[1] = vJuego2;
+                    videoJuegos[2] = vJuego3;
+                    videoJuegos[3] = vJuego4;
+                    videoJuegos[4] = vJuego5;
+                    seriesList[2].Entregado();
+                    seriesList[3].Entregado();
+                    seriesList[4].Entregado();
+                    videoJuegos[1].Entregado();
+                    videoJuegos[2].Entregado();
+                    int contadorSeriesEntregadas = 0;
+                    int contadorVideojJuegos = 0;
+
+                    for (i = 0; i < 5; i++) {
+                        if (seriesList[i].isEntragado()) {
+                            contadorSeriesEntregadas++;
+                        }
+                        if (videoJuegos[i].isEntragado()) {
+                            contadorVideojJuegos++;
+                        }
+
+                    }
+
+                    int videojuegoMayor = 0;
+                    int numeroMayor = videoJuegos[0].getHoraEstimada();
+
+                    for (i = 0; i < videoJuegos.length; i++) {
+                        if (videoJuegos[i].getHoraEstimada() > numeroMayor) {
+                            videojuegoMayor = i;
+                        }
+                    }
+
+                    int serieMayor = 0;
+                    int numeroMayor2 = seriesList[0].getTemporada();
+
+                    for (i = 0; i < seriesList.length; i++) {
+                        if (seriesList[i].getTemporada() > numeroMayor2) {
+                            serieMayor = i;
+                        }
+                    }
+
+                    System.out.println("series entregados = " + contadorSeriesEntregadas);
+                    System.out.println("videojuegos entregados = " + contadorVideojJuegos);
+                    System.out.println("videojuego con mayor horas estimaras = " + videoJuegos[videojuegoMayor]);
+                    System.out.println("serie  con  mas temporadas = " + seriesList[serieMayor]);
 
                     break;
             }//fin case DEL MENU PRINCIPAL
